@@ -14,4 +14,5 @@ defmodule Counter do
   end
 end
 
-IO.inspect(Counter.count_lines)
+{_, contador} = Counter.count_lines
+IO.inspect(contador)
