@@ -2,8 +2,14 @@
 # Para correrlo desde la terminal
 # elixir counter.exs
 
-num_lines = File.read!("words")
-            |> String.split()
-            |> Enum.count()
+defmodule Counter do
+  def count_lines do
+    num_lines = File.read!("words")
+    |> String.split()
+    |> Enum.count()
 
-IO.puts(num_lines)
+    num_lines
+  end
+end
+
+IO.puts(Counter.count_lines)
