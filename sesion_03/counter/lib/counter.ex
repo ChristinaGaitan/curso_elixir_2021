@@ -19,6 +19,15 @@ defmodule Counter do
     :world
   end
 
+  @doc """
+  Counts lines.
+
+  ## Examples
+
+      iex> Counter.count_lines("words")
+      {:ok, 235886}
+
+  """
   def count_lines(file_name) do
     num_lines = File.read!(file_name)
     |> String.split()
@@ -28,4 +37,6 @@ defmodule Counter do
   end
 
   # Cargar la iex con el modulo: iex -S mix
+  # Counter.count_lines("words") encuentra el archivo
+  # porque esta en el directorio raiz
 end
