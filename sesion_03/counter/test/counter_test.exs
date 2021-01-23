@@ -7,4 +7,8 @@ defmodule CounterTest do
   test "greets the world" do
     assert Counter.hello() == :world
   end
+
+  test "counts file words" do
+    assert Counter.count_lines("words") == {:ok, 235886}
+  end
 end
