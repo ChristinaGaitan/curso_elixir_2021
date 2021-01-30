@@ -28,6 +28,9 @@ defmodule Counter do
       {:ok, 235886}
 
   """
+  # Cargar la iex con el modulo: iex -S mix
+  # Counter.count_lines("words") encuentra el archivo
+  # porque esta en el directorio raiz
   # Parametros opcionales con \\
   def count_lines(file_name \\ "words") do
     num_lines = File.read!(file_name)
@@ -37,7 +40,11 @@ defmodule Counter do
     {:ok, num_lines}
   end
 
-  # Cargar la iex con el modulo: iex -S mix
-  # Counter.count_lines("words") encuentra el archivo
-  # porque esta en el directorio raiz
+
+  def count_binary(file_name) do
+    content = File.read!(file_name)
+    hash = :crypto.hash(:md5, content)
+
+    {:ok, byte_size(hash)}
+  end
 end
