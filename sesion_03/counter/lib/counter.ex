@@ -28,7 +28,8 @@ defmodule Counter do
       {:ok, 235886}
 
   """
-  def count_lines(file_name) do
+  # Parametros opcionales con \\
+  def count_lines(file_name \\ "words") do
     num_lines = File.read!(file_name)
     |> String.split()
     |> Enum.count()
