@@ -1,6 +1,10 @@
 defmodule Counter do
+  # Hay que evitar lo más posible el uso de imports
+  # import String
+
   # Si empiezan con @ son atributos de código (NO son variables)
   # Son metadatos asociados al modulo
+
   @moduledoc """
   Documentation for `Counter`.
   """
@@ -33,6 +37,8 @@ defmodule Counter do
   # porque esta en el directorio raiz
   # Parametros opcionales con \\
   def count_lines(file_name \\ "words") do
+    # Se pueden hacer imports dentro de la funcion
+    # import String
     num_lines = File.read!(file_name)
     |> String.split()
     |> Enum.count()
