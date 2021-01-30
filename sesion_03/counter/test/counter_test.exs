@@ -8,6 +8,7 @@ defmodule CounterTest do
     assert Counter.hello() == :world
   end
 
+  # @tag :skip -> Para hacer skip de las pruebas
   test "counts file words" do
     assert Counter.count_lines("words") == {:ok, 235886}
   end
