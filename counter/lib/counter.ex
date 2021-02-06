@@ -23,6 +23,13 @@ defmodule Counter do
     :world
   end
 
+  # Funcion principal
+  # El _ junto args es para evitar warnings
+  # Para crear el binario: mix escript.build
+  def main(_args) do
+    IO.puts count_lines()
+  end
+
   @doc """
   Counts lines.
 
