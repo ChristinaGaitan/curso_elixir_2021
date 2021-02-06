@@ -27,7 +27,8 @@ defmodule Counter do
   # El _ junto args es para evitar warnings
   # Para crear el binario: mix escript.build
   def main(_args) do
-    IO.puts count_lines()
+    {:ok, result} = count_lines()
+    IO.puts result
   end
 
   @doc """
