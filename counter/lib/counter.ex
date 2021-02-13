@@ -62,3 +62,33 @@ defmodule Counter do
     {:ok, byte_size(hash)}
   end
 end
+
+
+# Ejemplo para procesos
+defmodule HelloWorld do
+  def greet do
+    IO.puts "hello"
+  end
+end
+
+# Ejemplo para procesos que solo termina cuando se cumple el pattern matching
+defmodule HelloWorldServer do
+  def greet do
+    receive do
+      # Hace que el proceso quede en espera
+      {sender, msg} -> send(sender, {:ok, "Hello, #{msg}"})
+    end
+  end
+end
+
+ # Hacerlo ciclico con recursividad
+defmodule HelloWorldServer do
+  def greet do
+    receive do
+      # Hace que el proceso quede en espera
+      {sender, msg} -> send(sender, {:ok, "Hello, #{msg}"})
+    end
+    greet() # Hacerlo ciclico con recursividad
+  end
+end
+
