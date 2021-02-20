@@ -72,14 +72,14 @@ defmodule HelloWorld do
 end
 
 # Ejemplo para procesos que solo termina cuando se cumple el pattern matching
-defmodule HelloWorldServer do
-  def greet do
-    receive do
-      # Hace que el proceso quede en espera
-      {sender, msg} -> send(sender, {:ok, "Hello, #{msg}"})
-    end
-  end
-end
+# defmodule HelloWorldServer do
+#   def greet do
+#     receive do
+#       # Hace que el proceso quede en espera
+#       {sender, msg} -> send(sender, {:ok, "Hello, #{msg}"})
+#     end
+#   end
+# end
 
  # Hacerlo ciclico con recursividad
 defmodule HelloWorldServer do
