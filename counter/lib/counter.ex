@@ -121,3 +121,10 @@ end
 1..5 |>
  Enum.map(&async_query.("query #{&1}")) |>
  Enum.map(fn(_) -> get_result.() end)
+
+# ===============================
+async_queries = fn(queries) ->
+  queries |>
+  Enum.map(&async_query.("query #{&1}")) |>
+  Enum.map(fn(_) -> get_result.() end)
+end
