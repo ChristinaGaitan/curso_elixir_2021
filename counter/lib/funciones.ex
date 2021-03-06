@@ -33,3 +33,31 @@ async_queries = fn(queries) ->
   Enum.map(&async_query.("query #{&1}")) |>
   Enum.map(fn(_) -> get_result.() end)
 end
+
+defmodule DatabaseServer do
+  def start do
+    # crea el proceso que esta representando al servidor
+    # loop se ejecuta en un segundo proceso
+    spawn(&loop/0)
+  end
+
+  defp loop do
+    receive do
+      {:run_query, caller, query_def} ->
+        send(caller, {:query_result, sync_query(query_def)})
+    end
+    loop()
+  end
+
+  defp sync_query(query_def) do
+    :timer.sleep(2000)
+    "#{query_def} result"
+  end
+
+  def send_query(query) do
+    # DatabaseServer.send_query("Query 1")
+  end
+
+  def get_result do
+  end
+end
