@@ -61,3 +61,44 @@ defmodule DatabaseServer do
   def get_result do
   end
 end
+
+defmodule DatabaseServer do
+  def start do
+    spawn(&loop/0)
+  end
+
+  defp loop do
+    receive do
+      {:run_query, caller, query_def} ->
+        send(caller, {:query_result, sync_query(query_def)})
+    end
+    loop()
+  end
+
+  defp sync_query(query_def) do
+    :timer.sleep(2000)
+    "#{query_def} result"
+  end
+
+  def send_query(server_pid, query) do
+    send(server_pid, {:run_query, self(), query})
+  end
+
+  def get_result do
+    receive do
+      {:query_result, result} -> result
+    after 5000 ->
+      {:error, :timeout}
+    end
+  end
+end
+
+pool =
+  1..100 |>
+    Enum.map(fn(_) -> DatabaseServer.start end)
+
+1..50 |>
+  Enum.each(fn(query_def) ->
+    server_pid = Enum.at(pool, :random.uniform(100) - 1)
+    DatabaseServer.send_query(server_pid, query_def)
+  end)
