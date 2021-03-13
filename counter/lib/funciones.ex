@@ -102,3 +102,40 @@ pool =
     server_pid = Enum.at(pool, :random.uniform(100) - 1)
     DatabaseServer.send_query(server_pid, query_def)
   end)
+
+
+
+defmodule DatabaseServer do
+  def start do
+    connection = :random.uniform(1000)
+    IO.inspect(connection)
+    spawn(fn ->
+      loop(connection)
+    end)
+  end
+
+  defp loop(connection) do
+    receive do
+      {:run_query, caller, query_def} ->
+        send(caller, {:query_result, sync_query(connection, query_def)})
+    end
+    loop(connection)
+  end
+
+  defp sync_query(connection, query_def) do
+    :timer.sleep(2000)
+    "Connection #{connection}: #{query_def} result"
+  end
+
+  def send_query(server_pid, query) do
+    send(server_pid, {:run_query, self(), query})
+  end
+
+  def get_result do
+    receive do
+      {:query_result, result} -> result
+    after 5000 ->
+      {:error, :timeout}
+    end
+  end
+end
