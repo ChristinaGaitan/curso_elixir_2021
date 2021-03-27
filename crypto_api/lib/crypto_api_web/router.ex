@@ -7,6 +7,7 @@ defmodule CryptoApiWeb.Router do
 
   scope "/api", CryptoApiWeb do
     pipe_through :api
+    get "/currencies", CurrencyController, :index
   end
 
   # Enables LiveDashboard only for development
