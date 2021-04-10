@@ -1,5 +1,5 @@
-defmodule ShoppingMallWeb.Router do
-  use ShoppingMallWeb, :router
+defmodule HelloWeb.Router do
+  use HelloWeb, :router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -13,15 +13,14 @@ defmodule ShoppingMallWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", ShoppingMallWeb do
+  scope "/", HelloWeb do
     pipe_through :browser
 
     get "/", PageController, :index
-    get "/cart", CartController, :index
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", ShoppingMallWeb do
+  # scope "/api", HelloWeb do
   #   pipe_through :api
   # end
 
@@ -37,7 +36,7 @@ defmodule ShoppingMallWeb.Router do
 
     scope "/" do
       pipe_through :browser
-      live_dashboard "/dashboard", metrics: ShoppingMallWeb.Telemetry
+      live_dashboard "/dashboard", metrics: HelloWeb.Telemetry
     end
   end
 end
