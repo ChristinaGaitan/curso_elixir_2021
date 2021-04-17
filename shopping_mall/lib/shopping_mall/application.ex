@@ -7,6 +7,8 @@ defmodule ShoppingMall.Application do
 
   def start(_type, _args) do
     children = [
+      # El segundo parametro es el valor inicial, se manda una estructura en blanco
+      {ShoppingMall.CartAgent, %ShoppingMall.ShoopingCart{}},
       # Start the Telemetry supervisor
       ShoppingMallWeb.Telemetry,
       # Start the PubSub system
