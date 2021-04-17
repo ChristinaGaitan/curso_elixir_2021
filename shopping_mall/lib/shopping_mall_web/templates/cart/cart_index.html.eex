@@ -1,1 +1,1 @@
-Items: 0
+Items: <%= @cart.count %>
