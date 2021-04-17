@@ -6,4 +6,12 @@ defmodule ShoppingMallWeb.CartController do
     cart = CartAgent.value()
     render(conn, "cart_index.html", cart: cart)
   end
+
+  def update(conn, params) do
+    IO.inspect(params)
+    CartAgent.increment()
+
+    conn
+      |> redirect(to: "/cart")
+  end
 end
