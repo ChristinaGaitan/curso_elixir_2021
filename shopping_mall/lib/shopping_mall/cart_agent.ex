@@ -14,4 +14,10 @@ defmodule ShoppingMall.CartAgent do
       ShoppingMall.ShoopingCart.add(cart)
     end)
   end
+
+  def decrement do
+    Agent.update(__MODULE__, fn cart ->
+      ShoppingMall.ShoopingCart.subtract(cart)
+    end)
+  end
 end
