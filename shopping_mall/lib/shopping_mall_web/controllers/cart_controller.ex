@@ -7,21 +7,21 @@ defmodule ShoppingMallWeb.CartController do
     render(conn, "cart_index.html", cart: cart)
   end
 
-  def update(conn, %{"action" => action} = params) when action == "add" do
+  def update(conn, %{"action" => action} = _params) when action == "add" do
     CartAgent.increment()
 
     conn
       |> redirect(to: "/cart")
   end
 
-  def update(conn, %{"action" => action} = params) when action == "discount" do
+  def update(conn, %{"action" => action} = _params) when action == "discount" do
     CartAgent.decrement()
 
     conn
       |> redirect(to: "/cart")
   end
 
-  def update(conn, params) do
+  def update(conn, _params) do
     conn
       |> redirect(to: "/cart")
   end
