@@ -6,6 +6,8 @@ defmodule CostcoMallEeWeb.PageController do
   end
 
   def app_index(conn, _params) do
+    IO.inspect(self())
+    Mailer.MailerOne.send()
     conn
     |> put_status(200)
     |> json(%{message: :ok})
